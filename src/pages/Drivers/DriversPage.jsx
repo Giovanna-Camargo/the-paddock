@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, Mouse, MoveUpRight } from 'lucide-react'
 import './drivers.css'
+import DriversGrid from './DriversGrid.jsx'
 import civilianPortrait from '../../assets/drivers/driver-civilian.jpg'
 import racingPortrait from '../../assets/drivers/driver-racewear.jpg'
 
@@ -79,6 +80,7 @@ export default function DriversPage() {
         <div className="drivers-side-label">THE PADDOCK <span>—</span> DRIVERS</div>
         <div className="drivers-touch-instruction"><MoveUpRight size={14}/> Toque na imagem para revelar</div>
       </section>
+      <DriversGrid />
     </main>
   )
 }
