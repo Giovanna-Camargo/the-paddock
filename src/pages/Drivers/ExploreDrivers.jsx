@@ -77,7 +77,7 @@ export default function ExploreDrivers() {
   const [decade,setDecade] = useState('all')
   const [championsOnly,setChampionsOnly] = useState(false)
   const [showFilters,setShowFilters] = useState(false)
-  const [limit,setLimit] = useState(12)
+  const [limit,setLimit] = useState(6)
 
   const filtered = useMemo(()=>allDrivers.filter(driver=>{
     const term=query.trim().toLocaleLowerCase('pt-BR')
@@ -89,7 +89,7 @@ export default function ExploreDrivers() {
       && (!championsOnly || driver.champion)
   }),[query,category,team,country,decade,championsOnly])
 
-  const resetFilters=()=>{setQuery('');setCategory('all');setTeam('all');setCountry('all');setDecade('all');setChampionsOnly(false);setLimit(12)}
+  const resetFilters=()=>{setQuery('');setCategory('all');setTeam('all');setCountry('all');setDecade('all');setChampionsOnly(false);setLimit(6)}
   const hasFilters=query || category!=='all' || team!=='all' || country!=='all' || decade!=='all' || championsOnly
 
   return <section className="explore-drivers-section" id="explore-drivers">
@@ -102,23 +102,23 @@ export default function ExploreDrivers() {
         <div className="explore-archive-total"><b>{allDrivers.length}</b><span>PERFIS NO CATÁLOGO INICIAL</span></div>
       </header>
       <div className="explore-drivers-content">
-        <label className="archive-search"><Search size={17}/><input value={query} onChange={e=>{setQuery(e.target.value);setLimit(12)}} placeholder="Buscar piloto, equipe ou nacionalidade..." /><kbd>⌘ K</kbd></label>
+        <label className="archive-search"><Search size={17}/><input value={query} onChange={e=>{setQuery(e.target.value);setLimit(6)}} placeholder="Buscar piloto, equipe ou nacionalidade..." /><kbd>⌘ K</kbd></label>
         <div className="archive-toolbar">
           <div className="archive-tabs" role="group" aria-label="Filtrar por período">
-            {[['all','Todos'],['active','Em atividade'],['historic','Históricos']].map(([value,label])=><button key={value} type="button" className={category===value?'is-active':''} onClick={()=>{setCategory(value);setLimit(12)}}>{label}</button>)}
+            {[['all','Todos'],['active','Em atividade'],['historic','Históricos']].map(([value,label])=><button key={value} type="button" className={category===value?'is-active':''} onClick={()=>{setCategory(value);setLimit(6)}}>{label}</button>)}
           </div>
           <button className={`archive-filter-toggle ${showFilters?'is-open':''}`} type="button" onClick={()=>setShowFilters(v=>!v)}><SlidersHorizontal size={15}/> FILTROS <span>{showFilters?'−':'+'}</span></button>
         </div>
         {showFilters && <div className="archive-filter-panel">
-          <label>EQUIPE<select value={team} onChange={e=>{setTeam(e.target.value);setLimit(12)}}><option value="all">Todas as equipes</option>{teams.map(v=><option key={v}>{v}</option>)}</select></label>
-          <label>NACIONALIDADE<select value={country} onChange={e=>{setCountry(e.target.value);setLimit(12)}}><option value="all">Todas</option>{countries.map(v=><option key={v}>{v}</option>)}</select></label>
-          <label>DÉCADA<select value={decade} onChange={e=>{setDecade(e.target.value);setLimit(12)}}><option value="all">Todas as décadas</option>{decades.map(v=><option key={v} value={v}>{v}s</option>)}</select></label>
-          <label className="archive-champions-filter"><input type="checkbox" checked={championsOnly} onChange={e=>{setChampionsOnly(e.target.checked);setLimit(12)}}/> Apenas campeões</label>
+          <label>EQUIPE<select value={team} onChange={e=>{setTeam(e.target.value);setLimit(6)}}><option value="all">Todas as equipes</option>{teams.map(v=><option key={v}>{v}</option>)}</select></label>
+          <label>NACIONALIDADE<select value={country} onChange={e=>{setCountry(e.target.value);setLimit(6)}}><option value="all">Todas</option>{countries.map(v=><option key={v}>{v}</option>)}</select></label>
+          <label>DÉCADA<select value={decade} onChange={e=>{setDecade(e.target.value);setLimit(6)}}><option value="all">Todas as décadas</option>{decades.map(v=><option key={v} value={v}>{v}s</option>)}</select></label>
+          <label className="archive-champions-filter"><input type="checkbox" checked={championsOnly} onChange={e=>{setChampionsOnly(e.target.checked);setLimit(6)}}/> Apenas campeões</label>
           <button type="button" className="archive-reset" onClick={resetFilters}><X size={13}/> LIMPAR FILTROS</button>
         </div>}
         <div className="archive-results-line"><span>{filtered.length} RESULTADOS</span><span>ORDENADOS POR RELEVÂNCIA</span></div>
-        {filtered.length ? <div className="archive-driver-grid">{filtered.slice(0,limit).map((driver,index)=><DriverArchiveCard key={`${driver.name}-${driver.status}`} driver={driver} index={index}/>)}</div> : <div className="archive-empty"><strong>NENHUM PILOTO ENCONTRADO</strong><span>Tente alterar a busca ou remover alguns filtros.</span><button type="button" onClick={resetFilters}>LIMPAR BUSCA</button></div>}
-        {filtered.length>limit && <button type="button" className="archive-load-more" onClick={()=>setLimit(v=>v+12)}>CARREGAR MAIS PILOTOS <span>＋</span></button>}
+        {filtered.length ? <div className="archive-driver-grid">{(hasFilters ? filtered : filtered.slice(0,limit)).map((driver,index)=><DriverArchiveCard key={`${driver.name}-${driver.status}`} driver={driver} index={index}/>)}</div> : <div className="archive-empty"><strong>NENHUM PILOTO ENCONTRADO</strong><span>Tente alterar a busca ou remover alguns filtros.</span><button type="button" onClick={resetFilters}>LIMPAR BUSCA</button></div>}
+        {!hasFilters && filtered.length>limit && <button type="button" className="archive-load-more" onClick={()=>setLimit(v=>v+6)}>CARREGAR MAIS PILOTOS <span>＋</span></button>}
         <p className="archive-data-note">CATÁLOGO INICIAL DEMONSTRATIVO · DADOS HISTÓRICOS E PERFIS COMPLETOS SERÃO EXPANDIDOS NA INTEGRAÇÃO COM A BASE DE DADOS.</p>
       </div>
     </div>
