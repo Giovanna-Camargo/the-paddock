@@ -27,3 +27,10 @@ Acesse http://localhost:5173.
 
 ## Observações
 Imagens remotas e conteúdo da próxima corrida são placeholders visuais. Antes da publicação, substitua por imagens próprias/licenciadas e integre dados esportivos verificados.
+
+
+## Página de pilotos — Drivers Experience
+
+A rota `/pilotos` possui um carrossel demonstrativo em tela cheia com revelação circular controlada pelo cursor. Em dispositivos com toque, a área da imagem alterna a revelação por toque.
+
+**Importante:** os três perfis apresentados são fictícios e servem apenas para demonstrar o comportamento do carrossel. As imagens também são assets conceituais gerados para o protótipo. Substitua nomes, equipes, números e imagens por dados e materiais autorizados antes de publicar o conteúdo como informação real.

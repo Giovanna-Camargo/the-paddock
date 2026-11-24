@@ -1,0 +1,38 @@
+/* Drivers Experience — full-screen interactive driver carousel */
+.drivers-page{background:#0c0d10;min-height:100svh}
+.drivers-stage{position:relative;isolation:isolate;min-height:100svh;height:100svh;overflow:hidden;background:#101114;cursor:crosshair;--reveal-size:clamp(145px,18vw,270px)}
+.drivers-backdrop{position:absolute;inset:0;background:radial-gradient(ellipse at 68% 38%,#29272a 0%,#151519 43%,#090a0c 100%)}
+.drivers-photo{position:absolute;inset:0;background-repeat:no-repeat;background-size:auto 100%;background-position:68% center}
+.drivers-photo--civilian{background-position:68% center}
+.drivers-photo--racewear{background-position:68% center;clip-path:circle(var(--reveal-size) at var(--reveal-x) var(--reveal-y));transition:clip-path .04s linear;will-change:clip-path}
+.drivers-stage--touch-reveal .drivers-photo--racewear{clip-path:circle(42% at 70% 42%)}
+.drivers-vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(5,6,8,.9) 0%,rgba(5,6,8,.72) 28%,rgba(5,6,8,.13) 66%,rgba(5,6,8,.38) 100%),linear-gradient(0deg,rgba(5,6,8,.75),transparent 32%,rgba(5,6,8,.16))}
+.drivers-copy{position:absolute;z-index:2;left:var(--page-gutter);bottom:clamp(115px,15vh,175px);max-width:min(520px,45vw);animation:drivers-copy-in .55s ease both}
+@keyframes drivers-copy-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.drivers-eyebrow{display:flex;align-items:center;gap:15px;color:var(--color-red);font-size:clamp(10px,.9vw,13px);font-weight:700;letter-spacing:.2em}
+.drivers-eyebrow i{display:inline-block;width:48px;height:3px;background:var(--color-red)}
+.drivers-copy h1{display:flex;flex-direction:column;margin:22px 0 16px;font:800 clamp(76px,8vw,130px)/.77 var(--font-display);font-style:italic;letter-spacing:-.025em;text-transform:uppercase}
+.drivers-copy h1 span{color:#f3f2ef}
+.drivers-copy h1 strong{color:var(--color-red);font-weight:800}
+.drivers-meta{display:flex;align-items:center;gap:13px;flex-wrap:wrap;color:#f2f0ed;font:600 clamp(10px,.9vw,13px) var(--font-display);letter-spacing:.19em}
+.drivers-meta b{color:var(--color-red)}
+.drivers-copy>p{color:#d2d0ce;font-size:clamp(13px,1.1vw,16px);line-height:1.7;margin:22px 0 0;max-width:420px}
+.drivers-demo-note{display:inline-block;margin-top:17px;color:#8e8e92;font-size:8px;letter-spacing:.16em}
+.drivers-hint{position:absolute;z-index:3;left:50%;bottom:48px;transform:translateX(-50%);display:flex;align-items:center;gap:17px;white-space:nowrap;color:#f0efed}
+.drivers-hint>span{height:30px;width:1px;background:rgba(255,255,255,.55)}
+.drivers-hint strong{font-size:9px;letter-spacing:.19em}
+.drivers-controls{position:absolute;z-index:4;right:var(--page-gutter);bottom:42px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px 24px}
+.drivers-counter{grid-column:1/-1;text-align:right;color:#f4f2ef;font:700 16px var(--font-display);letter-spacing:.08em}
+.drivers-progress{display:flex;gap:5px;align-items:center}
+.drivers-progress span{width:30px;height:4px;background:rgba(255,255,255,.24);transition:background .25s}
+.drivers-progress span.is-active{background:var(--color-red)}
+.drivers-arrows{display:flex;gap:20px}
+.drivers-arrows button{display:grid;place-items:center;width:32px;height:32px;border:0;background:transparent;color:#fff;cursor:pointer;transition:color .2s,transform .2s}
+.drivers-arrows button:hover{color:var(--color-red);transform:scale(1.12)}
+.drivers-arrows svg{width:23px;height:23px}
+.drivers-side-label{position:absolute;right:24px;top:50%;writing-mode:vertical-rl;transform:translateY(-50%);font-size:8px;letter-spacing:.24em;color:rgba(255,255,255,.52)}
+.drivers-side-label span{color:var(--color-red);padding:9px 0}
+.drivers-touch-instruction{display:none}
+@media(max-width:900px){.drivers-copy{max-width:52vw;bottom:150px}.drivers-copy h1{font-size:clamp(72px,10vw,108px)}.drivers-photo{background-size:auto 100%;background-position:68% center}.drivers-photo--racewear{background-position:68% center}.drivers-vignette{background:linear-gradient(90deg,rgba(5,6,8,.88),rgba(5,6,8,.46) 48%,rgba(5,6,8,.15)),linear-gradient(0deg,rgba(5,6,8,.75),transparent 42%)}}
+@media(max-width:640px){.drivers-stage{height:calc(100svh - 0px);min-height:620px;cursor:pointer;--reveal-size:clamp(105px,30vw,150px)}.drivers-photo{background-size:auto 100%;background-position:58% center}.drivers-vignette{background:linear-gradient(90deg,rgba(5,6,8,.68),rgba(5,6,8,.12) 90%),linear-gradient(0deg,rgba(5,6,8,.93) 0%,rgba(5,6,8,.55) 42%,rgba(5,6,8,.08) 76%)}.drivers-copy{left:22px;right:22px;bottom:150px;max-width:calc(100% - 44px)}.drivers-copy h1{font-size:clamp(70px,17vw,104px);margin:18px 0 13px}.drivers-eyebrow{font-size:9px;letter-spacing:.14em}.drivers-eyebrow i{width:28px}.drivers-meta{gap:8px;font-size:10px;letter-spacing:.1em}.drivers-copy>p{font-size:13px;max-width:300px;margin-top:14px}.drivers-demo-note{font-size:7px}.drivers-hint{left:22px;bottom:92px;transform:none;gap:10px}.drivers-hint svg{width:21px}.drivers-hint>span{height:24px}.drivers-hint strong{font-size:7px;letter-spacing:.12em;white-space:normal;max-width:180px;line-height:1.5}.drivers-controls{right:20px;bottom:20px;gap:7px 12px}.drivers-counter{font-size:13px}.drivers-progress span{width:17px;height:3px}.drivers-arrows{gap:8px}.drivers-arrows button{width:28px;height:28px}.drivers-side-label{display:none}.drivers-touch-instruction{display:flex;position:absolute;right:22px;top:90px;align-items:center;gap:6px;color:rgba(255,255,255,.75);font-size:8px;letter-spacing:.08em}.drivers-stage--touch-reveal .drivers-hint strong{color:#ff626a}}
+@media(prefers-reduced-motion:reduce){.drivers-copy{animation:none}.drivers-photo--racewear,.drivers-arrows button{transition:none}}
