@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Mouse, MoveUpRight } from 'lucide-react'
 import './drivers.css'
 import DriversGrid from './DriversGrid.jsx'
 import ExploreDrivers from './ExploreDrivers.jsx'
+import LegendsSection from './LegendsSection.jsx'
 import civilianPortrait from '../../assets/drivers/driver-civilian.jpg'
 import racingPortrait from '../../assets/drivers/driver-racewear.jpg'
 
@@ -83,6 +84,7 @@ export default function DriversPage() {
       </section>
       <DriversGrid />
       <ExploreDrivers />
+      <LegendsSection />
     </main>
   )
 }
