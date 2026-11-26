@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Flag, Gauge, MapPin, Route, CalendarDays } from 'lucide-react'
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, Flag, Gauge, MapPin, Route, CalendarDays, Search, X } from 'lucide-react'
 import './circuits.css'
 
 const featuredCircuits = [
@@ -67,11 +67,39 @@ const calendar2026 = [
   { round: 23, gp: 'Grande Prêmio de Abu Dhabi', circuit: 'Yas Marina Circuit', place: 'Abu Dhabi, Emirados Árabes Unidos', date: '04–06 DEZ', flag: '🇦🇪', image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=85' },
 ]
 
+
+const circuitArchive = [
+  { id: 'monaco', name: 'Circuit de Monaco', country: 'Mônaco', flag: '🇲🇨', region: 'Europa', status: 'Atual', length: '3,337 km', turns: '19', image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'monza', name: 'Autodromo Nazionale Monza', country: 'Itália', flag: '🇮🇹', region: 'Europa', status: 'Atual', length: '5,793 km', turns: '11', image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'suzuka', name: 'Suzuka International Racing Course', country: 'Japão', flag: '🇯🇵', region: 'Ásia', status: 'Atual', length: '5,807 km', turns: '18', image: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'spa', name: 'Circuit de Spa-Francorchamps', country: 'Bélgica', flag: '🇧🇪', region: 'Europa', status: 'Atual', length: '7,004 km', turns: '20', image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'silverstone', name: 'Silverstone Circuit', country: 'Reino Unido', flag: '🇬🇧', region: 'Europa', status: 'Atual', length: '5,891 km', turns: '18', image: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'interlagos', name: 'Autódromo José Carlos Pace', country: 'Brasil', flag: '🇧🇷', region: 'Américas', status: 'Atual', length: '4,309 km', turns: '15', image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'cota', name: 'Circuit of The Americas', country: 'Estados Unidos', flag: '🇺🇸', region: 'Américas', status: 'Atual', length: '5,513 km', turns: '20', image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'marina-bay', name: 'Marina Bay Street Circuit', country: 'Singapura', flag: '🇸🇬', region: 'Ásia', status: 'Atual', length: '4,940 km', turns: '19', image: 'https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'nurburgring', name: 'Nürburgring Nordschleife', country: 'Alemanha', flag: '🇩🇪', region: 'Europa', status: 'Histórico', length: '22,835 km', turns: '154', image: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'hockenheim', name: 'Hockenheimring', country: 'Alemanha', flag: '🇩🇪', region: 'Europa', status: 'Histórico', length: '4,574 km', turns: '17', image: 'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'estoril', name: 'Autódromo do Estoril', country: 'Portugal', flag: '🇵🇹', region: 'Europa', status: 'Histórico', length: '4,360 km', turns: '13', image: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=85' },
+  { id: 'watkins-glen', name: 'Watkins Glen International', country: 'Estados Unidos', flag: '🇺🇸', region: 'Américas', status: 'Histórico', length: '5,435 km', turns: '11', image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=85' },
+]
+
 export default function CircuitsPage() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [visibleCount, setVisibleCount] = useState(3)
+  const [archiveVisibleCount, setArchiveVisibleCount] = useState(3)
+  const [archiveSearch, setArchiveSearch] = useState('')
+  const [archiveFilter, setArchiveFilter] = useState('Todos')
   const circuit = featuredCircuits[activeIndex]
   const visibleCircuits = useMemo(() => calendar2026.slice(0, visibleCount), [visibleCount])
+  const filteredArchive = useMemo(() => {
+    const term = archiveSearch.trim().toLocaleLowerCase('pt-BR')
+    return circuitArchive.filter(item => {
+      const matchesFilter = archiveFilter === 'Todos' || item.status === archiveFilter || item.region === archiveFilter
+      const matchesSearch = !term || `${item.name} ${item.country} ${item.region}`.toLocaleLowerCase('pt-BR').includes(term)
+      return matchesFilter && matchesSearch
+    })
+  }, [archiveSearch, archiveFilter])
+  const visibleArchive = filteredArchive.slice(0, archiveVisibleCount)
   const changeCircuit = (direction) => setActiveIndex(index => (index + direction + featuredCircuits.length) % featuredCircuits.length)
 
   return (
@@ -164,6 +192,52 @@ export default function CircuitsPage() {
           )}
         </div>
         <p className="circuit-calendar__source">Calendário conforme a programação exibida pela Fórmula 1. Fotografias ilustrativas; datas e etapas podem sofrer alterações.</p>
+      </section>
+
+      <section className="circuit-archive section-wide" id="explore-circuits">
+        <div className="circuit-archive__heading">
+          <div>
+            <span className="circuit-archive__eyebrow"><i /> THE PADDOCK · CIRCUIT ARCHIVE</span>
+            <h2>EXPLORE THE<br/> CIRCUITS</h2>
+          </div>
+          <p>Descubra os circuitos atuais e históricos da Fórmula 1 e mergulhe na história de cada pista que faz parte desta categoria lendária.</p>
+        </div>
+
+        <label className="circuit-archive__search">
+          <Search size={21} aria-hidden="true" />
+          <input value={archiveSearch} onChange={event => { setArchiveSearch(event.target.value); setArchiveVisibleCount(3) }} placeholder="Buscar circuito..." aria-label="Buscar circuito por nome ou país" />
+          {archiveSearch && <button type="button" onClick={() => setArchiveSearch('')} aria-label="Limpar busca"><X size={17}/></button>}
+        </label>
+
+        <div className="circuit-archive__filters" aria-label="Filtrar circuitos">
+          {['Todos', 'Atual', 'Histórico', 'Europa', 'Américas', 'Ásia'].map(filter => (
+            <button key={filter} type="button" className={archiveFilter === filter ? 'is-active' : ''} aria-pressed={archiveFilter === filter} onClick={() => { setArchiveFilter(filter); setArchiveVisibleCount(3) }}>{filter === 'Atual' ? 'Atuais' : filter === 'Histórico' ? 'Históricos' : filter}</button>
+          ))}
+        </div>
+
+        <div className="circuit-archive__grid">
+          {visibleArchive.map(item => (
+            <article className="archive-card" key={item.id}>
+              <div className="archive-card__image" style={{ backgroundImage: `url("${item.image}")` }}>
+                <span className="archive-card__status">{item.status === 'Atual' ? 'NA F1 ATUAL' : 'LEGADO F1'}</span>
+              </div>
+              <div className="archive-card__body">
+                <div className="archive-card__country"><span>{item.flag}</span>{item.country}</div>
+                <h3>{item.name}</h3>
+                <div className="archive-card__specs"><span><Route size={16}/>{item.length}</span><i/><span><Gauge size={16}/>{item.turns} curvas</span></div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {filteredArchive.length === 0 ? (
+          <p className="circuit-archive__empty">Nenhum circuito encontrado. Tente outro nome ou filtro.</p>
+        ) : (
+          <div className="circuit-archive__more">
+            <span>MOSTRANDO {visibleArchive.length} DE {filteredArchive.length} CIRCUITOS</span>
+            {visibleArchive.length < filteredArchive.length && <button type="button" onClick={() => setArchiveVisibleCount(count => count + 6)}>CARREGAR MAIS CIRCUITOS <ArrowDown size={15}/></button>}
+          </div>
+        )}
       </section>
     </main>
   )
