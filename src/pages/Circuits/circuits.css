@@ -1,0 +1,660 @@
+.circuits-page{
+    background:#0d0e10;
+}
+
+.circuit-experience{
+    position:relative;
+    isolation:isolate;
+    min-height:min(850px,100svh);
+    min-height:max(690px,100svh);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    padding:130px var(--page-gutter) 110px;
+    background-image:var(--circuit-image);
+    background-position:center 54%;
+    background-size:cover;
+    transition:background-image .35s ease;
+}
+
+.circuit-experience:before{
+    content:"";
+    position:absolute;
+    z-index:-1;inset:0;
+    background:linear-gradient(90deg,rgba(7,8,10,.94) 0%,rgba(7,8,10,.76) 37%,rgba(7,8,10,.15) 78%),linear-gradient(0deg,rgba(7,8,10,.78),transparent 43%),linear-gradient(180deg,rgba(7,8,10,.55),transparent 30%);
+}
+
+.circuit-experience__shade{
+    position:absolute;
+    z-index:-1;
+    inset:0;
+    backdrop-filter:saturate(.78);
+}
+
+.circuit-experience__content{
+    width:min(760px,72vw);
+    animation:circuitFade .55s ease both;
+}
+
+@keyframes circuitFade{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.circuit-eyebrow,.circuit-intro .eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#e8e7e3;
+    font-size:10px;
+    letter-spacing:.23em;
+    font-weight:700;
+}
+
+.circuit-eyebrow i,.circuit-intro__rule span{
+    display:inline-block;
+    width:42px;
+    height:2px;
+    background:var(--color-red);
+}
+
+.circuit-eyebrow b{
+    color:#888;
+    font-weight:500;
+}
+
+.circuit-experience h1{
+    font: 800 clamp(76px, 10vw, 140px)/.82 var(--font-display);
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    margin: 30px 0 18px;
+    max-width: 1050px;
+    text-wrap: balance;
+}
+
+.circuit-location{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#e1e0dc;
+    font-size:13px;
+    letter-spacing:.04em;
+}
+
+.circuit-description{
+    max-width:480px;
+    color:#d0cfc9;
+    font-size:14px;
+    line-height:1.85;
+    margin:30px 0 32px;
+}
+
+.circuit-stats{
+    display:flex;
+    align-items:center;
+    gap:clamp(22px,4vw,58px);
+    margin:0 0 34px;
+}
+
+.circuit-stats>div{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.circuit-stats svg{
+    width:25px;
+    height:25px;
+    color:#e6e5e0;
+    stroke-width:1.35;
+}
+
+.circuit-stats span{
+    display:grid;
+    gap:5px;
+}
+
+.circuit-stats strong{
+    font-size:17px;
+    font-weight:500;
+    letter-spacing:.02em;
+}
+
+.circuit-stats small{
+    font-size:8px;
+    letter-spacing:.15em;
+    color:#a5a5a5;
+}
+
+.circuit-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+    padding:15px 20px;
+    border:1px solid rgba(255,255,255,.72);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.16em;
+    transition:background .2s,border-color .2s;
+}
+
+.circuit-cta:hover{
+    background:var(--color-red);
+    border-color:var(--color-red);
+}
+
+.circuit-photo-note{
+    display:block;
+    margin-top:22px;
+    color:rgba(255,255,255,.52);
+    font-size:8px;
+    letter-spacing:.15em;
+}
+
+.circuit-experience__controls{
+    position:absolute;
+    left:var(--page-gutter);
+    right:var(--page-gutter);
+    bottom:48px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.circuit-pagination{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.circuit-pagination button{
+    width:7px;
+    height:7px;
+    border:0;
+    border-radius:50%;
+    padding:0;
+    background:rgba(255,255,255,.38);
+    cursor:pointer;
+    transition:width .2s,background .2s;
+}
+
+.circuit-pagination button.is-active{
+    width:28px;
+    border-radius:3px;
+    background:var(--color-red);
+}
+
+.circuit-arrows{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.circuit-arrows>span{
+    font:600 13px var(--font-display);
+    letter-spacing:.08em;
+    margin-right:14px;
+}
+
+.circuit-arrows>span i{
+    font-style:normal;
+    color:#777;
+    margin:0 5px;
+}
+
+.circuit-arrows button{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:50%;
+    background:rgba(10,10,10,.2);
+    color:white;
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    transition:background .2s,border-color .2s;
+}
+
+.circuit-arrows button:hover{
+    background:var(--color-red);
+    border-color:var(--color-red);
+}
+
+.circuit-arrows svg{
+    width:17px;
+}
+
+.circuit-scroll{
+    position:absolute;
+    bottom:48px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#bbb;
+    font-size:8px;
+    letter-spacing:.17em;
+}
+
+.circuit-intro{
+    padding-top:clamp(95px,12vw,170px);
+    padding-bottom:clamp(95px,12vw,170px);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:9vw;
+    row-gap:26px;
+    align-items:end;
+}
+
+.circuit-intro .eyebrow{
+    grid-column:1/-1;
+    color:var(--color-red);
+}
+
+.circuit-intro h2{
+    font: 800 clamp(48px, 6vw, 82px)/.88 var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+
+.circuit-intro h2 em {
+    color: var(--color-red);
+    font-style: normal;
+    font-weight: 800;
+}
+
+.circuit-intro h2 em{
+    color:#9b9b9b;
+    font-weight:400;
+}
+
+.circuit-intro>p{
+    max-width:470px;
+    color:#aaa;
+    font-size:14px;
+    line-height:1.9;
+    margin:0 0 8px;
+}
+
+.circuit-intro__rule{
+    grid-column:1/-1;
+    border-top:1px solid #292a2e;
+    padding-top:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.circuit-intro__rule span{
+    width:24px;
+}
+
+.circuit-intro__rule small{
+    font-size:8px;
+    letter-spacing:.16em;
+    color:#777;
+}
+
+@media(max-width:760px){
+    .circuit-experience{
+        min-height:calc(100svh - 70px);
+        padding-top:115px;
+        padding-bottom:150px;
+        background-position:58% center;
+    }
+    .circuit-experience:before{
+        background:linear-gradient(90deg,rgba(7,8,10,.9),rgba(7,8,10,.48) 72%,rgba(7,8,10,.22)),linear-gradient(0deg,rgba(7,8,10,.85),transparent 55%),linear-gradient(180deg,rgba(7,8,10,.35),transparent 25%);
+    }
+    .circuit-experience__content{
+        width:100%;
+        max-width:600px;
+    }
+    .circuit-experience h1 {
+        font-size: clamp(58px, 13vw, 92px);
+        line-height: 0.86;
+    }
+    .circuit-description{
+        font-size:13px;
+        max-width:420px;
+        margin:23px 0 27px;
+    }
+    .circuit-stats{
+        gap:20px;
+        flex-wrap:wrap;
+    }
+    .circuit-stats>div{
+        gap:8px;
+    }
+    .circuit-stats svg{
+        width:21px;
+    }
+    .circuit-stats strong{
+        font-size:15px;
+    }
+    .circuit-stats small{
+        font-size:7px;
+    }
+    .circuit-experience__controls{
+        bottom:30px;
+    }
+    .circuit-scroll{
+        display:none;
+    }
+    .circuit-arrows button{
+        width:37px;
+        height:37px;
+    }
+    .circuit-intro{
+        grid-template-columns:1fr;
+        gap:24px;
+        padding-top:95px;
+        padding-bottom:95px;
+    }
+    .circuit-intro .eyebrow,.circuit-intro__rule{
+        grid-column:auto;
+    }
+    .circuit-intro h2{
+        font-size:clamp(48px,12vw,70px);
+    }
+    .circuit-intro>p{
+        font-size:13px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    .circuit-experience__content{
+        animation:none;
+    }
+}
+
+
+/* 2026 Grand Prix Circuits */
+.circuit-calendar{
+    padding-top:clamp(24px,4vw,54px);
+    padding-bottom:clamp(100px,12vw,160px);
+    border-top:1px solid #242529;
+}
+
+.circuit-calendar__heading{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:35px;
+    margin-bottom:34px;
+}
+
+.circuit-calendar__eyebrow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#e8e7e3;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.2em;
+}
+
+.circuit-calendar__eyebrow i{
+    display:inline-block;
+    width:38px;
+    height:2px;
+    background:var(--color-red);
+}
+
+.circuit-calendar__heading h2{
+    margin:14px 0 0;
+    color:var(--color-offwhite);
+    font:800 clamp(46px,6vw,78px)/.86 var(--font-display);
+    letter-spacing:-.025em;
+    text-transform:uppercase;
+}
+
+.circuit-calendar__heading>p{
+    max-width:360px;
+    margin:0 0 7px;
+    color:#aaa;
+    font-size:13px;
+    line-height:1.7;
+    text-align:right;
+}
+
+.circuit-calendar__heading>p strong{
+    color:#f1f0ec;
+    font-weight:600;
+}
+
+.circuit-calendar__mobile-break{
+    display:none;
+}
+
+.circuit-calendar__grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:22px;
+}
+
+.calendar-card{
+    min-width:0;
+    overflow:hidden;
+    border:1px solid #292b30;
+    border-radius:12px;
+    background:#111316;
+    transition:border-color .25s,transform .25s;
+}
+
+.calendar-card:hover{
+    border-color:rgba(213,31,42,.75);
+    transform:translateY(-4px);
+}
+
+.calendar-card__image{
+    position:relative;
+    height:clamp(190px,19vw,260px);
+    background-color:#24272c;
+    background-position:center;
+    background-size:cover;
+}
+
+.calendar-card__image:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(0,0,0,.34),transparent 42%,rgba(0,0,0,.48));
+}
+
+.calendar-card__round,.calendar-card__date{
+    position:absolute;
+    z-index:1;
+    top:16px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#fff;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.13em;
+}
+
+.calendar-card__round{
+    left:17px;
+}
+
+.calendar-card__date{
+    right:16px;
+}
+
+.calendar-card__body{
+    padding:19px 20px 17px;
+}
+
+.calendar-card__country{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#b6b6b6;
+    font-size:9px;
+    font-weight:600;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.calendar-card__country>span{
+    font-size:17px;
+    line-height:1;
+}
+
+.calendar-card h3{
+    min-height:2.05em;
+    margin:13px 0 7px;
+    color:var(--color-offwhite);
+    font:700 clamp(23px,2.2vw,31px)/.98 var(--font-display);
+    text-transform:uppercase;
+}
+
+.calendar-card__body>p{
+    min-height:2.8em;
+    margin:0;
+    color:#96989d;
+    font-size:11px;
+    line-height:1.55;
+}
+
+.calendar-card__footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-top:17px;
+    padding-top:14px;
+    border-top:1px solid #292b30;
+}
+
+.calendar-card__footer>span:first-child{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#c5c5c5;
+    font-size:10px;
+}
+
+.calendar-card__footer svg{
+    flex:none
+}
+
+.calendar-card__arrow{
+    display:grid;
+    width:34px;
+    height:34px;
+    place-items:center;
+    border:1px solid #62646a;
+    border-radius:50%;
+    color:#f1f0ec;
+}
+
+.circuit-calendar__more{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:17px;
+    margin-top:35px;
+}
+
+.circuit-calendar__more>span{
+    color:#777a80;
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:.16em;
+}
+
+.circuit-calendar__more button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:24px;
+    min-width:300px;
+    padding:16px 24px;
+    border:1px solid rgba(255,255,255,.65);
+    background:transparent;
+    color:#f1f0ec;
+    cursor:pointer;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.13em;
+    transition:background .2s,border-color .2s;
+}
+
+.circuit-calendar__more button:hover{
+    border-color:var(--color-red);
+    background:var(--color-red);
+}
+
+.circuit-calendar__source{
+    margin:20px 0 0;
+    color:#686b70;
+    font-size:9px;
+    line-height:1.6;
+    text-align:center;
+}
+
+@media(max-width:900px){
+    .circuit-calendar__grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:16px;
+    }
+    .calendar-card__image{
+        height:230px;
+    }
+}
+
+@media(max-width:600px){
+    .circuit-calendar{
+        padding-top:24px;
+        padding-bottom:95px;
+    }
+    .circuit-calendar__heading{
+        display:block;
+        margin-bottom:26px;
+    }
+    .circuit-calendar__heading h2{
+        font-size:clamp(43px,11vw,64px);
+        line-height:.88;
+    }
+    .circuit-calendar__heading>p{
+        max-width:300px;
+        margin:17px 0 0;
+        text-align:left;
+        font-size:12px;
+    }
+    .circuit-calendar__mobile-break{
+        display:block;
+    }
+    .circuit-calendar__grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+    .calendar-card__image{
+        height:clamp(205px,62vw,285px);
+    }
+    .calendar-card__body{
+        padding:17px;
+    }
+    .calendar-card h3{
+        font-size:29px;
+        min-height:0;
+    }
+    .calendar-card__body>p{
+        min-height:0;
+    }
+    .circuit-calendar__more button{
+        min-width:0;
+        width:100%;
+        max-width:340px;
+    }
+}
